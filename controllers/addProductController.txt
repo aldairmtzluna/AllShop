@@ -1,0 +1,273 @@
+<?php
+    session_start();
+    require_once "../config/conn.php";
+    require_once "../config/APP.php";
+    if (isset($_POST['publicar']) or isset($_POST['guardar'])) {
+        if (empty($_FILES['foto_uno_producto']) && empty($_FILES['foto_dos_producto']) && empty($_FILES['foto_tres_producto']) && 
+        empty($_FILES['foto_cuatro_producto']) && empty($_POST['nombre_producto']) && empty($_POST['modelo_producto']) &&
+        empty($_POST['descripcion_producto']) && empty($_POST['precio_producto']) && empty($_POST['existencia_producto']) &&
+        empty($_POST['costo_envio_producto']) && empty($_POST['descuento_producto']) &&
+        empty($_POST['peso_producto']) && empty($_POST['ancho_producto']) && empty($_POST['largo_producto']) && 
+        empty($_POST['alto_producto']) && empty($_POST['preventa_producto']) &&  empty($_POST['condicion_producto'])) {
+            echo "  <script>
+                        alert('Todos los campos son obligatorios');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_FILES['foto_uno_producto']) or empty($_FILES['foto_dos_producto']) or empty($_FILES['foto_tres_producto'])
+        or empty($_FILES['foto_cuatro_producto'])) {
+            echo "  <script>
+                        alert('Todas las fotos son obligatorias');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['nombre_producto'])) {
+            echo "  <script>
+                        alert('El nombre del producto es obligatorio');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['modelo_producto'])) {
+            echo "  <script>
+                        alert('El modelo del producto es obligatorio');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if ($_POST['categoria_producto'] == 'Establezca la categoria') {
+            echo "  <script>
+                        alert('Establezca la categoria del producto');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['descripcion_producto'])) {
+            echo "  <script>
+                        alert('La descripción del producto es obligatoria');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['precio_producto'])) {
+            echo "  <script>
+                        alert('El precio del producto es obligatorio');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['existencia_producto'])) {
+            echo "  <script>
+                        alert('La existencia del producto es obligatoria');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['peso_producto'])) {
+            echo "  <script>
+                        alert('El peso del producto es obligatorio');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['ancho_producto']) or empty($_POST['largo_producto'])or empty($_POST['alto_producto'])) {
+            echo "  <script>
+                        alert('El tamaño del paquete es obligatorio');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['preventa_producto'])) {
+            echo "  <script>
+                        alert('Especifica si tu producto tendra preventa');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }if (empty($_POST['condicion_producto'])) {
+            echo "  <script>
+                        alert('Especifica la condición de tu producto');
+                        window.location = '../user/seller/add-products';
+                    </script>";
+        }else {
+            $photoOne = $_FILES['foto_uno_producto'];
+            $photoTwo = $_FILES['foto_dos_producto'];
+            $photoThree = $_FILES['foto_tres_producto'];
+            $photoFour = $_FILES['foto_cuatro_producto'];
+            $video = $_FILES['video'];
+
+            $month = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][date('n')-1];
+            $year = strftime('%Y');
+            $date = date('Y-m-d H:i:s');
+            $randomNum = mt_rand(1000, 9999);
+            $randomNumTwo = mt_rand(1000, 9999);
+            $randomNumThree = mt_rand(1000, 9999);
+            $randomNumFour = mt_rand(1000, 9999);
+            $randomVideo = mt_rand(1000, 9999);
+
+            //SE EXTRAEN LAS EXTENCIONES DE CADA UNO DE LOS ARCHIVOS
+            if (isset($_FILES['foto_uno_producto']['name']) && isset($_FILES['foto_dos_producto']['name']) &&
+            isset($_FILES['foto_tres_producto']['name']) && isset($_FILES['foto_cuatro_producto']['name'])) {
+
+                $ext1 = pathinfo($_FILES['foto_uno_producto']['name'], PATHINFO_EXTENSION);
+                $ext2 = pathinfo($_FILES['foto_dos_producto']['name'], PATHINFO_EXTENSION);
+                $ext3 = pathinfo($_FILES['foto_tres_producto']['name'], PATHINFO_EXTENSION);
+                $ext4 = pathinfo($_FILES['foto_cuatro_producto']['name'], PATHINFO_EXTENSION);
+                
+
+                //SE CREAN LOS NOMBRES QUE SE VAN A GUARDAR EN LA BASE DE DATOS DE CADA ARCHIVO
+
+                $nameOne = $month.'_'.$year.'_'.$randomNum.'_producto.'.$ext1;
+                $nameTwo = $month.'_'.$year.'_'.$randomNumTwo.'_producto.'.$ext2;
+                $nameThree = $month.'_'.$year.'_'.$randomNumThree.'_producto.'.$ext3;
+                $nameFour = $month.'_'.$year.'_'.$randomNumFour.'_producto.'.$ext4;
+            }if (isset($_FILES['video'])) {
+                $extVideo = pathinfo($_FILES['video']['name'], PATHINFO_EXTENSION);
+                $nameVideo = $month.'_'.$year.'_'.$randomVideo.'_video_producto.'.$extVideo;
+            }if (empty($_FILES['video'])){
+                $nameVideo = 'Sin video';
+            }
+
+            //SE CREAN LAS VARIABLES PARA CADA UNO DE LOS CAMPOS
+
+            $productName = $_POST['nombre_producto'];
+            $productModel = $_POST['modelo_producto'];
+            $productCategory = $_POST['categoria_producto'];
+            $productDescription = $_POST['descripcion_producto'];
+            $productPrice = $_POST['precio_producto'];
+            $productStock = $_POST['existencia_producto'];
+            $productContry = $_POST['pais_origen_producto'];
+            $productCost = $_POST['costo_envio_producto'];
+            $productDiscount = $_POST['descuento_producto'];
+            $productWeight = $_POST['peso_producto'];
+            $productWidth = $_POST['ancho_producto'];
+            $productLarge = $_POST['largo_producto'];
+            $productHigh = $_POST['alto_producto'];
+            $productPresale = $_POST['preventa_producto'];
+            $productCondition = $_POST['condicion_producto'];
+            $status = "1";
+            $idUser = $_SESSION['id_usuario'];
+
+            $productName = str_replace('"', '', $productName);
+            $productModel = str_replace('"', '', $productModel);
+            $productDescription = str_replace('"', '', $productDescription);
+
+            //SE REALIZA LA CONSULTA DE INSERCION DE DATOS
+
+            $sql = $conn->query ("INSERT INTO productos (foto_uno_producto, foto_dos_producto, foto_tres_producto, foto_cuatro_producto, 
+                    video_producto, nombre_producto, modelo_producto, id_categoria_producto, descripcion_producto, precio_producto, 
+                    existencia_producto, pais_origen_producto, costo_envio_producto, descuento_producto, peso_producto, ancho_producto, 
+                    largo_producto, alto_producto,	preventa_producto, condicion_producto,	status_producto, id_usuario_producto, 
+                    fecha_creacion_producto) VALUES ('$nameOne', '$nameTwo', '$nameThree', '$nameFour', '$nameVideo',
+                    '$productName', '$productModel', '$productCategory', '$productDescription', '$productPrice', '$productStock', '$productContry', 
+                    '$productCost', '$productDiscount', '$productWeight', '$productWidth', '$productLarge', '$productHigh', '$productPresale', 
+                    '$productCondition', '$status','$idUser', '$date')");
+
+            //RUTA DONDE SE LOJARAN LAS IMAGENES DE LOS PRODUCTOS, Y SE CREAN LOS DIRECTORIOS
+            $server = str_replace('\\', '/', dirname(__DIR__));
+            $root = $server . '/views/sellers/dashSeller/products/';
+
+            if (!is_dir($root)) {
+                mkdir($root, 0777, true);
+            }
+            
+            $idDirectory = $root . $_SESSION['id_usuario'];
+            
+            if (!is_dir($idDirectory)) {
+                mkdir($idDirectory, 0777, true);
+            }
+            
+            $yearDirectory = $idDirectory . '/' . $year;
+            
+            if (!is_dir($yearDirectory)) {
+                mkdir($yearDirectory, 0777, true);
+            }
+            
+            $monthDirectory = $yearDirectory . '/' . $month;
+            
+            if (!is_dir($monthDirectory)) {
+                mkdir($monthDirectory, 0777, true);
+            }
+
+            $nameProductDirectory = $monthDirectory . '/' . $productName;
+            
+            if (!is_dir($nameProductDirectory)) {
+                mkdir($nameProductDirectory, 0777, true);
+            }
+            
+            $route = $nameProductDirectory;
+            
+
+            if (!empty($nameOne)) {
+                $completeRoute = $route . '/' . $nameOne;
+                $archiveTemporalOne = $photoOne['tmp_name'];
+                if (move_uploaded_file($archiveTemporalOne, $completeRoute)) {
+                    // La imagen uno se movió correctamente
+                }
+            }
+
+            if (!empty($nameTwo)) {
+                $completeRoute = $route . '/' . $nameTwo;
+                $archiveTemporalTwo = $photoTwo['tmp_name'];
+                if (move_uploaded_file($archiveTemporalTwo, $completeRoute)) {
+                    // La imagen dos se movió correctamente
+                }
+            }
+
+            if (!empty($nameThree)) {
+                $completeRoute = $route . '/' . $nameThree;
+                $archiveTemporalThree = $photoThree['tmp_name'];
+                if (move_uploaded_file($archiveTemporalThree, $completeRoute)) {
+                    // La imagen tres se movió correctamente
+                }
+            }
+
+            if (!empty($nameFour)) {
+                $completeRoute = $route . '/' . $nameFour;
+                $archiveTemporalFour = $photoFour['tmp_name'];
+                if (move_uploaded_file($archiveTemporalFour, $completeRoute)) {
+                    // La imagen cuatro se movió correctamente
+                }
+            }
+
+            if (!empty($nameVideo)) {
+                $completeRoute = $route . '/' . $nameVideo;
+                $archiveTemporalVideo = $video['tmp_name'];
+                if (move_uploaded_file($archiveTemporalVideo, $completeRoute)) {
+                    // La imagen cuatro se movió correctamente
+                }
+            }
+
+            if ($sql) {
+                echo "<script>
+                    alert('Producto publicado con exito');
+                    window.location = '../user/seller/my-products';
+                </script>";
+            }else{
+                echo "<script>
+                            alert('Error al publicar el producto');
+                            window.location = './user/seller/add-products';
+                        </script>";
+            }
+
+        }
+    }if (isset($_POST['cancelar'])) {
+        echo "<script>
+                window.location = '../user/seller/add-products';
+            </script>";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$sql = $conn->prepare ("INSERT INTO productos (foto_uno_producto, foto_dos_producto, foto_tres_producto, foto_cuatro_producto, 
+                    video_producto, nombre_producto, modelo_producto, id_categoria_producto, descripcion_producto, precio_producto, 
+                    existencia_producto, pais_origen_producto, costo_envio_producto, descuento_producto, peso_producto, ancho_producto, 
+                    largo_producto, alto_producto,	preventa_producto, condicion_producto,	status_producto, id_usuario_producto, 
+                    fecha_creacion_producto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $sql->bind_param('s,s,s,s,s,s,s,i,s,d,s,s,d,s,s,s,s,s,s,s,i,i,s', $nameOne, $nameTwo, $nameThree, $nameFour, $nameVideo,
+                    $productName, $productModel, $productCategory, $productDescription, $productPrice, $productStock, $productContry, 
+                    $productCost, $productDiscount, $productWeight, $productWidth, $productLarge, $productHigh, $productPresale, 
+                    $productCondition, $status, $idUser, $date);
+            $sql->execute();
