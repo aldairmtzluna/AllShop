@@ -156,7 +156,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="electronic">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Eléctronicos</option>
                             <?php 
                             $electronic = '1';
@@ -176,7 +176,7 @@
                     </div>
                      <div class="form-control-add-product subcategory" id="mensFootwear">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Calzado de hombre</option>
                             <?php 
                             $mensFootwear = '2';
@@ -196,7 +196,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="womensFootwear">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Calzado de mujer</option>
                             <?php 
                             $womensFootwear = '3';
@@ -216,7 +216,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="videoGames">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Videojuegos</option>
                             <?php 
                             $videoGames = '4';
@@ -236,7 +236,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="health">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Salud</option>
                             <?php 
                             $health = '5';
@@ -256,7 +256,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="watches">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Relojes y accesorios</option>
                             <?php 
                             $watches = '6';
@@ -276,7 +276,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="beauty">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Belleza</option>
                             <?php 
                             $beauty = '7';
@@ -296,7 +296,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="home">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Hogar</option>
                             <?php 
                             $home = '8';
@@ -316,7 +316,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="sports">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Deportes</option>
                             <?php 
                             $sports = '9';
@@ -336,7 +336,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="cars">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Accesorios para vehiculos</option>
                             <?php 
                             $cars = '10';
@@ -356,7 +356,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="womenswear">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Ropa de mujer</option>
                             <?php 
                             $womenswear = '11';
@@ -376,7 +376,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="menswear">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Ropa de hombre</option>
                             <?php 
                             $menswear = '12';
@@ -396,7 +396,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="trips">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Viajes</option>
                             <?php 
                             $trips = '13';
@@ -416,7 +416,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="books">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Libros y revistas</option>
                             <?php 
                             $books = '14';
@@ -436,7 +436,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="pets">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Articulos para mascotas</option>
                             <?php 
                             $pets = '15';
@@ -456,7 +456,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="stationery">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Papeleria</option>
                             <?php 
                             $stationery = '16';
@@ -476,7 +476,7 @@
                     </div>
                     <div class="form-control-add-product subcategory" id="kits">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Bebes y niños</option>
                             <?php 
                             $kits = '19';
@@ -496,7 +496,7 @@
                     </div>
                      <div class="form-control-add-product subcategory" id="appliances">
                         <label for="">Subcategoría del producto:</label>
-                        <select name="categoria_producto" id="" class="input-add-product" style="margin-left: 17px">
+                        <select name="subcategoria_producto" id="" class="input-add-product" style="margin-left: 17px">
                             <option value="0" >Electrodomésticos</option>
                             <?php 
                             $appliances = '21';

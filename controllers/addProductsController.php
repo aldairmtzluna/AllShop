@@ -181,9 +181,11 @@
             }
 
             if ($sql) {
-                mostrarAlerta("Producto publicado con exito.", '../../user/seller/my-products');
-            }else{
-                mostrarAlerta("Error al publicar el producto.", './user/seller/add-products');
+                mostrarAlerta("Producto publicado con éxito.", '../../user/seller/my-products');
+            } else {
+                // Mostrar el error específico de MySQL
+                $errorMsg = $conn->error;  // Captura el mensaje de error de MySQL
+                mostrarAlerta("Error al publicar el producto: $errorMsg", './user/seller/add-products');
             }
 
         }
